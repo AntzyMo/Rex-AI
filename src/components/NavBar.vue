@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <NavBar />
-  <TheSearch />
-  <TheMatchs />
+  <nav class="m-5">
+    <h1>Rex AI</h1>
+  </nav>
 </template>

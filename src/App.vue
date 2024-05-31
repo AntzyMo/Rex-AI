@@ -1,6 +1,5 @@
 <template>
-  <main class="font-sans py-10 text-center text-gray-700" flex="~ col items-center">
+  <div font-mono>
     <RouterView />
-    <TheFooter />
-  </main>
+  </div>
 </template>

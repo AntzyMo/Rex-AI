@@ -8,7 +8,10 @@
     "up": "taze major -I"
   },
   "dependencies": {
+    "@codemirror/state": "^6.4.1",
+    "@codemirror/view": "^6.26.3",
     "@vueuse/core": "^10.9.0",
+    "codemirror": "^6.0.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
