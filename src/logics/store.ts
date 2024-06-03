@@ -11,3 +11,4 @@ function transformRNToN(content: string) {
 export const regex = useLocalStorage('rex', DEFAULT_REGEX)
 export const content = useLocalStorage('content', transformRNToN(DEFAULT_CONTENT))
 export const flags = useLocalStorage('flags', 'gm')
+export const fullResultIdx = useLocalStorage('fullResultIdx', 0)

@@ -7,7 +7,7 @@
   const props = defineProps<{ matches?: RegExpMatchArray[] }>()
 
   const divRef = ref<HTMLDivElement | null>()
-  const content = defineModel<string>()
+  const text = defineModel<string>()
 
   const addUnderline = StateEffect.define<{ from: number, to: number, color: string }>()
   const clearUnderline = StateEffect.define<null>()
@@ -38,22 +38,29 @@
   onMounted(() => {
     const cm = new EditorView({
       parent: divRef.value,
-      doc: content.value,
+      doc: text.value,
       extensions: [
         EditorView.lineWrapping,
         underlineField,
         // 监听文档变化
         EditorView.updateListener.of(update => {
           if (update.docChanged)
-            content.value = update.state.doc.toString()
+            text.value = update.state.doc.toString()
         })
       ]
+    })
+
+    watch(text, val => {
+      if (val !== cm.state.doc.toString()) {
+        cm.dispatch({
+          changes: { from: 0, to: cm.state.doc.length, insert: val }
+        })
+      }
     })
 
     watch(
       () => props.matches,
       (matches = []) => {
-        console.log('matches', matches)
         cm.dispatch({
           effects: [
             clearUnderline.of(null),
@@ -89,11 +96,15 @@
 }
 
 .cm-line{
-  @apply font-mono text-sm
+  @apply font-mono text-xs
+}
+
+.fullResult .cm-line{
+  @apply  leading-5
 }
 
 .source .cm-line{
-  @apply text-gray-400
+  @apply text-gray-400/80
 }
 
 .match{

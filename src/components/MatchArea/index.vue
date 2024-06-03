@@ -1,0 +1,4 @@
+<template>
+  <TheSearch />
+  <TheMatchs />
+</template>
