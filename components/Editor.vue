@@ -37,7 +37,7 @@
 
   onMounted(() => {
     const cm = new EditorView({
-      parent: divRef.value,
+      parent: divRef.value!,
       doc: text.value,
       extensions: [
         EditorView.lineWrapping,
@@ -65,7 +65,7 @@
           effects: [
             clearUnderline.of(null),
             ...matches.map((item, index) => {
-              const from = item.index
+              const from = item.index ?? 0
               const to = from + item[0].length
               if (from === to)
                 return null

@@ -4,16 +4,18 @@
 
   import { content, flags, fullResultIdx, regex } from '@/logics'
 
+  const { copy } = useClipboard()
+
   const regexp = computed(() => {
     try {
       return new RegExp(regex.value, flags.value)
     } catch (e) {
       console.error(e)
-      return ''
+      return /\b/g
     }
   })
 
-  const matches = computed(() => [...content.value.matchAll(regexp.value)])
+  const matches = computed(() => [...content.value?.matchAll?.(regexp.value)])
 
   const iconsMatchNumbers = computed(() => {
     const matchLength = matches.value?.[0]?.length
@@ -36,8 +38,8 @@
           <span class="text-gray-400 text-sm">TEXT</span>
         </div>
         <div flex="~ items-center" class="text-gray-500 gap-3">
-          <button i-carbon:trash-can text-xl />
-          <button i-carbon:copy text-xl />
+          <button i-carbon:trash-can text-xl @click="content = ''" />
+          <button i-carbon:copy text-xl @click="copy(content)" />
         </div>
       </div>
       <div class="overflow-auto">
@@ -48,7 +50,7 @@
         />
       </div>
     </Pane>
-    <Pane size="30" class="px-5 mt-3">
+    <Pane size="30" flex="~ col" class="px-5 mt-3">
       <div flex="~ items-center justify-between" class="mb-3">
         <div flex="~ items-center" class="text-gray-500 gap-1.5">
           <div i-carbon:migrate class="text-xl rotate-270" />
@@ -64,7 +66,6 @@
               @click="fullResultIdx = index"
             />
           </template>
-          <button i-carbon:copy text-xl />
         </div>
       </div>
       <div class="overflow-auto">
