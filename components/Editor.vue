@@ -1,13 +1,20 @@
 <script setup lang="ts">
   import { EditorView } from 'codemirror'
-  import { Decoration } from '@codemirror/view'
-  import { StateEffect, StateField } from '@codemirror/state'
+  import { Decoration, placeholder } from '@codemirror/view'
+  import { EditorState, StateEffect, StateField } from '@codemirror/state'
   import type { DecorationSet } from '@codemirror/view'
 
-  const props = defineProps<{ matches?: RegExpMatchArray[] }>()
+  const props = defineProps<{ matches?: RegExpMatchArray[], readOnly?: boolean, placeholder?: string }>()
 
   const divRef = ref<HTMLDivElement | null>()
-  const text = defineModel<string>()
+  const [text, textModifiers] = defineModel<string>({
+    set(value) {
+      if (textModifiers.trim) {
+        return value.trim()
+      }
+      return value
+    }
+  })
 
   const addUnderline = StateEffect.define<{ from: number, to: number, color: string }>()
   const clearUnderline = StateEffect.define<null>()
@@ -46,7 +53,9 @@
         EditorView.updateListener.of(update => {
           if (update.docChanged)
             text.value = update.state.doc.toString()
-        })
+        }),
+        EditorState.readOnly.of(props.readOnly),
+        placeholder(props.placeholder || '')
       ]
     })
 

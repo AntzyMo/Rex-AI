@@ -10,23 +10,29 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.18",
+    "@azure/openai": "1.0.0-beta.12",
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.26.3",
     "@vueuse/core": "^10.10.0",
+    "ai": "^3.1.26",
     "codemirror": "^6.0.1",
     "nuxt": "^3.11.2",
     "splitpanes": "^3.1.5",
     "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@antzy/eslint-config": "^3.3.2",
     "@iconify-json/carbon": "^1.1.34",
+    "@iconify-json/ri": "^1.1.20",
     "@types/splitpanes": "^2.2.6",
     "@unocss/nuxt": "^0.60.4",
     "@unocss/reset": "^0.60.4",
     "@vueuse/nuxt": "^10.10.0",
     "eslint": "^9.4.0",
-    "unocss": "^0.60.4"
+    "unocss": "^0.60.4",
+    "unocss-preset-scrollbar": "^0.3.1"
   }
 }

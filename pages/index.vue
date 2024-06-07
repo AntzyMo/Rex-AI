@@ -1,16 +1,15 @@
 <script setup lang="ts">
-  import 'splitpanes/dist/splitpanes.css'
   import { Pane, Splitpanes } from 'splitpanes'
-</script>
+  </script>
 
 <template>
-  <div flex="~ col 1" class="h-100vh  overflow-hidden">
+  <div class="h-100vh py-3">
     <NavBar />
-    <Splitpanes>
-      <Pane flex="~ 1 col" class="">
+    <Splitpanes class="h-95%">
+      <Pane>
         <MatchArea />
       </Pane>
-      <Pane size="30">
+      <Pane size="40">
         <AIArea />
       </Pane>
     </Splitpanes>

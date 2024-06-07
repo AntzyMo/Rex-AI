@@ -4,8 +4,9 @@
 
 <template>
   <Editor
-    v-model="regex"
-    class="px-2 py-1 focus-within:border-gray-400/80 transition m-5"
+    v-model.trim="regex"
+    placeholder="Regex..."
+    class="px-2 py-1 mb-5 focus-within:border-gray-400/80 transition mx-5"
     border="~ rounded gray-300"
   />
 </template>

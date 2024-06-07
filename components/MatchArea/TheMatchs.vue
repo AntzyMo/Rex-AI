@@ -4,6 +4,18 @@
 
   import { content, flags, fullResultIdx, regex } from '@/logics'
 
+  enum IconsIsNumber {
+    'i-carbon:number-1',
+    'i-carbon:number-2',
+    'i-carbon:number-3',
+    'i-carbon:number-4',
+    'i-carbon:number-5',
+    'i-carbon:number-6',
+    'i-carbon:number-7',
+    'i-carbon:number-8',
+    'i-carbon:number-9'
+  }
+
   const { copy } = useClipboard()
 
   const regexp = computed(() => {
@@ -19,7 +31,7 @@
 
   const iconsMatchNumbers = computed(() => {
     const matchLength = matches.value?.[0]?.length
-    return Array.from({ length: matchLength }, (_, i) => `i-carbon:number-${i + 1}`)
+    return Array.from({ length: matchLength }, (_, i) => IconsIsNumber[i])
   })
 
   const fullResult = computed(() => {
@@ -30,46 +42,52 @@
 </script>
 
 <template>
-  <Splitpanes horizontal class=" overflow-hidden">
-    <Pane flex="~ 1 col" class="px-5">
-      <div flex="~ items-center justify-between" class="mb-3">
+  <Splitpanes horizontal>
+    <Pane flex="~ col">
+      <div flex="~ items-center justify-between" class="mb-3 mx-5">
         <div flex="~ items-center" class="text-gray-500 gap-1.5">
           <div i-carbon:text-annotation-toggle text-xl />
           <span class="text-gray-400 text-sm">TEXT</span>
         </div>
-        <div flex="~ items-center" class="text-gray-500 gap-3">
-          <button i-carbon:trash-can text-xl @click="content = ''" />
-          <button i-carbon:copy text-xl @click="copy(content)" />
+        <div flex="~ items-center" class="text-gray-500 gap-1">
+          <IconButton icon="i-carbon:text-clear-format text-xl" title="Clear" @click="content = ''" />
+          <IconButton icon="i-carbon:copy text-xl" title="Copy" @click="copy(content)" />
         </div>
       </div>
-      <div class="overflow-auto">
+      <div class="overflow-auto mb-1 scrollbar-lite ml-5 ">
         <Editor
-          v-model="content"
+          v-model.trim="content"
           :matches
           :class="{ source: regex }"
+          placeholder="Paste your content here..."
         />
       </div>
     </Pane>
-    <Pane size="30" flex="~ col" class="px-5 mt-3">
-      <div flex="~ items-center justify-between" class="mb-3">
+    <Pane size="40" flex="~  col" class="mt-3 mb-4">
+      <div flex="~ items-center justify-between" class="mb-3 mx-5">
         <div flex="~ items-center" class="text-gray-500 gap-1.5">
           <div i-carbon:migrate class="text-xl rotate-270" />
           <span class="text-gray-400 text-sm">MATCH</span>
         </div>
         <div flex="~ items-center" class="text-gray-500 gap-3">
           <template v-if="iconsMatchNumbers.length > 1">
-            <button
+            <IconButton
               v-for="(item, index) in iconsMatchNumbers"
               :key="item"
-              :class="item"
-              class="text-xl"
+              :icon="`${item} text-xl`"
+              :title="`Group ${index + 1}`"
               @click="fullResultIdx = index"
             />
           </template>
         </div>
       </div>
-      <div class="overflow-auto">
-        <Editor :model-value="fullResult" class="fullResult" />
+      <div class="overflow-auto scrollbar-lite ml-5">
+        <Editor
+          :model-value="fullResult"
+          read-only
+          class="fullResult"
+          placeholder="No found..."
+        />
       </div>
     </Pane>
   </Splitpanes>
@@ -77,7 +95,8 @@
 
 <style scoped>
 :global(.splitpanes__splitter){
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
+  opacity: .9;
   border: 1px solid #e0e0e0;
   cursor: ew-resize;
 }

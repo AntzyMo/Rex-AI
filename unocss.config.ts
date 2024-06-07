@@ -1,4 +1,5 @@
 // https://unocss.dev/integrations/vite
+import { presetScrollbar } from 'unocss-preset-scrollbar'
 import {
   defineConfig,
   presetAttributify,
@@ -12,8 +13,9 @@ import {
 
 export default defineConfig({
   shortcuts: [
-    ['btn', 'py-1 px-4 disabled:(bg-gray-600 opacity-50) bg-cyan-500 hover:bg-cyan-600 text-white rounded'],
-    ['icon-btn', 'hover:bg-cyan-600 transition cursor-pointer select-none']
+    ['scrollbar-lite', 'scrollbar scrollbar-rounded scrollbar-w-2 scrollbar-radius-2 scrollbar-track-radius-4 scrollbar-thumb-radius-4']
+    // ['btn', 'py-1 px-4 disabled:(bg-gray-600 opacity-50) bg-cyan-500 hover:bg-cyan-600 text-white rounded'],
+    // ['icon-btn', 'hover:bg-cyan-600 transition cursor-pointer select-none']
   ],
   presets: [
     presetUno(),
@@ -26,7 +28,8 @@ export default defineConfig({
         serif: 'DM Serif Display',
         mono: 'DM Mono'
       }
-    })
+    }),
+    presetScrollbar()
   ],
   transformers: [
     transformerDirectives(),

@@ -8,5 +8,9 @@ export default defineNuxtConfig({
       path: '~/components',
       pathPrefix: false
     }
-  ]
+  ],
+  runtimeConfig: {
+    azureOpenaiKey: process.env.AZURE_OPENAI_API_KEY,
+    azureOpenaiEndpoint: process.env.AZURE_OPENAI_ENDPOINT
+  }
 })

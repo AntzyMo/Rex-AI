@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <nav class="mx-5 mt-5">
+  <nav class="mx-5 py-3">
     <h1>Rex AI</h1>
   </nav>
 </template>
