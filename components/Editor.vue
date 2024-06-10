@@ -73,13 +73,12 @@
         cm.dispatch({
           effects: [
             clearUnderline.of(null),
-            ...matches.map((item, index) => {
+            ...matches.map(item => {
               const from = item.index ?? 0
               const to = from + item[0].length
               if (from === to)
                 return null
-              const color = index % 2 === 0 ? 'orange' : 'green'
-              return addUnderline.of({ from, to, color })
+              return addUnderline.of({ from, to, color: 'red' })
             }).filter(Boolean)
           ]
         })
@@ -120,13 +119,8 @@
   color:#000
 }
 
-.cm-underline-orange{
+.cm-underline-red{
   text-decoration: underline 2px #f87171;
-  text-underline-offset: 3px;
-}
-
-.cm-underline-green{
-  text-decoration: underline 2px #ea580c;
   text-underline-offset: 3px;
 }
 </style>
