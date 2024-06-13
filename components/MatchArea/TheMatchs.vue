@@ -75,7 +75,7 @@
             <IconButton
               v-for="(item, index) in iconsMatchNumbers"
               :key="item"
-              :icon="`${item} text-xl`"
+              :icon="[`${item}`, 'text-xl']"
               :title="`Group ${index + 1}`"
               :checked="fullResultIdx === index"
               @click="fullResultIdx = index"

@@ -6,15 +6,8 @@
 
   const { messages, input, handleSubmit } = useChat()
 
-  const MAX_TEXTAREA_HEIGHT = 148
-  const textareaHeight = ref('auto')
   const textareaRef = ref<HTMLTextAreaElement | null>()
-  async function autoScrollHeight() {
-    textareaHeight.value = 'auto'
-    await nextTick()
-    const height = textareaRef.value!.scrollHeight
-    textareaHeight.value = height > MAX_TEXTAREA_HEIGHT ? `${MAX_TEXTAREA_HEIGHT}px` : `${height}px`
-  }
+  const { targetHeight, autoScrollHeight } = useAutoHeight(textareaRef, { maxHeight: 148 })
 
   const md = markdownit()
 
@@ -90,14 +83,22 @@
           ref="textareaRef"
           v-model="input"
           rows="1"
-          :style="{ height: textareaHeight }"
+          :style="{ height: targetHeight }"
           class="w-full flex-1 px-2 py-1  overflow-y-auto outline-none text-sm  resize-none"
           placeholder="your meaasge..."
           @input="autoScrollHeight"
           @keydown.enter="e => handleSubmit(e, { options: { body: { text: content } } })"
         />
         <div flex="~ items-center justify-end">
-          <button i-carbon:send-alt class="text-2xl text-gray-500 bg-gray-600" />
+          <IconButton
+            :icon="[
+              'i-carbon:send-alt text-xl text-gray-500',
+              { 'text-white!': input.length },
+            ]"
+            :class="{
+              'bg-black/90! text-white!': input.length,
+            }"
+          />
         </div>
       </div>
     </div>
