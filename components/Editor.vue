@@ -4,7 +4,7 @@
   import { EditorState, StateEffect, StateField } from '@codemirror/state'
   import type { DecorationSet } from '@codemirror/view'
 
-  const props = defineProps<{ matches?: RegExpMatchArray[], readOnly?: boolean, placeholder?: string }>()
+  const props = defineProps<{ matches?: RegExpMatchArray[], readOnly?: boolean, placeholder?: string, loading?: boolean }>()
 
   const divRef = ref<HTMLDivElement | null>()
   const [text, textModifiers] = defineModel<string>({
@@ -91,7 +91,9 @@
 </script>
 
 <template>
-  <div ref="divRef" />
+  <div ref="divRef" class="relative">
+    <div v-if="loading" i-svg-spinners:6-dots-rotate class=" absolute top-1 right-1 text-gray-500" />
+  </div>
 </template>
 
 <style lang="postcss">

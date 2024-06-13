@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     }
   ],
   runtimeConfig: {
-    azureOpenaiKey: process.env.AZURE_OPENAI_API_KEY,
-    azureOpenaiEndpoint: process.env.AZURE_OPENAI_ENDPOINT
+    azureApiKey: process.env.AZURE_API_KEY,
+    azureResourceName: process.env.AZURE_RESOURCE_NAME
   }
 })

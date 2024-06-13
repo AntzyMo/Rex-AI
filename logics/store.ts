@@ -7,4 +7,14 @@ const DEFAULT_REGEX = '##'
 export const regex = useLocalStorage('rex', DEFAULT_REGEX)
 export const content = useLocalStorage('content', DEFAULT_CONTENT)
 export const flags = useLocalStorage('flags', 'gm')
-export const fullResultIdx = useLocalStorage('fullResultIdx', 0)
+export const aiRegex = useLocalStorage('aiRegex', ['##'])
+export const aiRegexIdx = useLocalStorage('aiRegexIdx', 0)
+
+export function setRegex(option: MaybeRef<string>) {
+  const val = unref(option)
+  regex.value = val
+  if (aiRegex.value.length) {
+    const idx = aiRegex.value.indexOf(val)
+    aiRegexIdx.value = idx === -1 ? 0 : idx
+  }
+}

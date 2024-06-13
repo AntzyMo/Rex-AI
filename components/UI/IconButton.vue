@@ -1,13 +1,17 @@
 <script setup lang="ts">
   defineProps<{
     icon: string
+    checked?: boolean
   }>()
 </script>
 
 <template>
   <button
-    class="hover:bg-gray-100 p-1.5 rounded-md transition"
+    class="hover:bg-gray-200/70 p-1.5 rounded-md transition"
     flex="~ items-center"
+    :class="{
+      'bg-gray-100!': checked,
+    }"
   >
     <span :class="icon" />
   </button>

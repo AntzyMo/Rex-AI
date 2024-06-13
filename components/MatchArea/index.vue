@@ -3,7 +3,7 @@
 
   const theSearchRef = ref<InstanceType<typeof TheSearch> | null>()
   const { height } = useElementSize(theSearchRef)
-  const matchsAreaHeight = computed(() => `calc(95% - ${height.value}px)`)
+  const matchsAreaHeight = computed(() => `calc(100% - ${height.value}px)`)
 </script>
 
 <template>
