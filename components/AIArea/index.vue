@@ -4,18 +4,21 @@
 
   import { aiRegex, content, setRegex } from '@/logics'
 
-  const { messages, input, handleSubmit } = useChat()
-
   const textareaRef = ref<HTMLTextAreaElement | null>()
   const { targetHeight, autoScrollHeight } = useAutoHeight(textareaRef, { maxHeight: 148 })
 
-  const md = markdownit()
+  const scrollRef = ref<HTMLDivElement | null>()
+  const { scrollToBottom } = useScroll(scrollRef)
 
+  const { messages, input, handleSubmit } = useChat()
+
+  const md = markdownit()
   function mdit(text: string) {
     return md.render(text)
   }
 
   watch(messages, data => {
+    scrollToBottom()
     const { content, role } = data.at(-1) ?? {}
     if (role === 'assistant') {
       const matchAi = [...content!.matchAll(/\[\[(.*?)\]\]/g)]?.[0]
@@ -42,10 +45,14 @@
       createdAt: '2024-06-12T07:50:26.853Z'
     }
   ]
+
+  async function sendMessage(e: any) {
+    handleSubmit(e, { options: { body: { text: content.value } } })
+  }
 </script>
 
 <template>
-  <div class="mx-5 h-full" flex="~ 1 col" border="~ rounded gray-200">
+  <div class="mx-5 h-full  min-w-433px" flex="~ 1 col" border="~ rounded gray-200">
     <div class=" bg-gray-100 px-2" flex="~ justify-between items-center">
       <div class="text-gray-500 gap-1.5 " flex="~ items-center">
         <div i-carbon:ai text-xl />
@@ -56,7 +63,8 @@
       </div>
     </div>
     <div
-      class="overflow-hidden overflow-y-auto px-2 py-4 text-sm gap-7 scrollbar-lite scrollbar-track-radius-0!"
+      ref="scrollRef"
+      class="overflow-hidden overflow-y-auto px-2 py-4 text-sm gap-7 scrollbar-lite scrollbar-track-radius-0! scroll-smooth"
       flex="~ 1 col"
     >
       <div v-for="m in messages" :key="m.id" class="whitespace-pre-wrap">
@@ -87,7 +95,7 @@
           class="w-full flex-1 px-2 py-1  overflow-y-auto outline-none text-sm  resize-none"
           placeholder="your meaasge..."
           @input="autoScrollHeight"
-          @keydown.enter="e => handleSubmit(e, { options: { body: { text: content } } })"
+          @keydown.enter="e => sendMessage(e)"
         />
         <div flex="~ items-center justify-end">
           <IconButton
@@ -98,6 +106,7 @@
             :class="{
               'bg-black/90! text-white!': input.length,
             }"
+            @click="e => sendMessage(e)"
           />
         </div>
       </div>
