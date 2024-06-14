@@ -55,6 +55,9 @@ devDependencies:
   '@iconify-json/ri':
     specifier: ^1.1.20
     version: 1.1.20
+  '@iconify-json/simple-icons':
+    specifier: ^1.1.105
+    version: 1.1.105
   '@iconify-json/svg-spinners':
     specifier: ^1.1.2
     version: 1.1.2
@@ -1015,6 +1018,12 @@ packages:
 
   /@iconify-json/ri@1.1.20:
     resolution: {integrity: sha512-yScIGjLFBCJKWKskQTWRjNI2Awoq+VRDkRxEsCQvSfdz41n+xkRtFG2K6J1OVI90ClRHfjFC8VJ2+WzxxyFjTQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/simple-icons@1.1.105:
+    resolution: {integrity: sha512-eSI32492Ga6IR7BhpDy222pSupqshZIVuYllaYHDO0MjmgVvfus5wgXb/U8RXpMZTpcQ/8dNcCK82LkupFqD4w==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

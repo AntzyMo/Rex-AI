@@ -1,7 +1,8 @@
 {
-  "name": "nuxt-app",
+  "name": "rex-ai",
   "private": true,
   "type": "module",
+  "version": "0.0.1-beta",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -28,6 +29,7 @@
     "@antzy/eslint-config": "^3.3.2",
     "@iconify-json/carbon": "^1.1.34",
     "@iconify-json/ri": "^1.1.20",
+    "@iconify-json/simple-icons": "^1.1.105",
     "@iconify-json/svg-spinners": "^1.1.2",
     "@types/markdown-it": "^14.1.1",
     "@types/splitpanes": "^2.2.6",

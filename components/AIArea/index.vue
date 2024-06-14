@@ -53,13 +53,13 @@
 
 <template>
   <div class="mx-5 h-full  min-w-433px" flex="~ 1 col" border="~ rounded gray-200">
-    <div class=" bg-gray-100 px-2" flex="~ justify-between items-center">
+    <div class=" bg-gray-100 px-2 py-1" flex="~ justify-between items-center">
       <div class="text-gray-500 gap-1.5 " flex="~ items-center">
         <div i-carbon:ai text-xl />
         <input class="w-100px">
       </div>
-      <div>
-        <button i-carbon:overflow-menu-horizontal class="text-xl text-gray-500" />
+      <div flex="~ items-center">
+        <button i-carbon:settings title="Setting" class="text-xl text-gray-500 hover:text-gray-600" />
       </div>
     </div>
     <div
@@ -67,7 +67,7 @@
       class="overflow-hidden overflow-y-auto px-2 py-4 text-sm gap-7 scrollbar-lite scrollbar-track-radius-0! scroll-smooth"
       flex="~ 1 col"
     >
-      <div v-for="m in messages" :key="m.id" class="whitespace-pre-wrap">
+      <div v-for="m in messages" :key="m.id">
         <!-- AI Area -->
         <div v-if="m.role !== 'user'" flex="~ gap-3 ">
           <div>
@@ -86,13 +86,13 @@
       </div>
     </div>
     <div class="p-3" border-t="~ gray-200">
-      <div flex="~ items-end" class="gap-1 p-1" border="~ rounded gray-200">
+      <div flex="~ items-end" class="gap-1  transition py-1 pr-1" border="~ rounded gray-200 focus-within:gray-400/80">
         <textarea
           ref="textareaRef"
           v-model="input"
           rows="1"
           :style="{ height: targetHeight }"
-          class="w-full flex-1 px-2 py-1  overflow-y-auto outline-none text-sm  resize-none"
+          class="w-full flex-1 px-2 py-1 self-center  overflow-y-auto outline-none text-sm  resize-none"
           placeholder="your meaasge..."
           @input="autoScrollHeight"
           @keydown.enter="e => sendMessage(e)"
@@ -112,6 +112,7 @@
       </div>
     </div>
   </div>
+  <div>123</div>
 </template>
 
 <style lang="postcss">
