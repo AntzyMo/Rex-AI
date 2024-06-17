@@ -2,7 +2,7 @@
   import markdownit from 'markdown-it'
   import { useChat } from '@ai-sdk/vue'
 
-  import { aiRegex, content, setRegex } from '@/logics'
+  import { aiRegex, content, modelSetting, setRegex } from '@/logics'
 
   const textareaRef = ref<HTMLTextAreaElement | null>()
   const { targetHeight, autoScrollHeight } = useAutoHeight(textareaRef, { maxHeight: 148 })
@@ -47,7 +47,14 @@
   ]
 
   async function sendMessage(e: any) {
-    handleSubmit(e, { options: { body: { text: content.value } } })
+    handleSubmit(e, {
+      options: {
+        headers: {
+          'X-RexAI-keys': JSON.stringify(modelSetting.value)
+        },
+        body: { text: content.value }
+      }
+    })
   }
 </script>
 

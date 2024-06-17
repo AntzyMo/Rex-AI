@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+  import { modelSetting } from '@/logics'
 </script>
 
 <template>
@@ -14,8 +14,8 @@
           Azure OpenAI
         </div>
         <div class="grid gap-3">
-          <Input type="password" title="API Key" />
-          <Input title="Resource Name" />
+          <Input v-model="modelSetting.azureApiKey" type="password" title="API Key" />
+          <Input v-model="modelSetting.azureResourceName" title="Resource Name" />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { Pane, Splitpanes } from 'splitpanes'
-  </script>
+</script>
 
 <template>
   <div class="h-100vh py-3">

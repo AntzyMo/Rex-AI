@@ -1,4 +1,5 @@
 import { useLocalStorage } from '@vueuse/core'
+import type { ModelSetting } from './types'
 
 import DEFAULT_CONTENT from '../README.md?raw'
 
@@ -18,3 +19,5 @@ export function setRegex(option: MaybeRef<string>) {
     aiRegexIdx.value = idx === -1 ? 0 : idx
   }
 }
+
+export const modelSetting = useLocalStorage<ModelSetting>('modelSetting', {} as ModelSetting)
