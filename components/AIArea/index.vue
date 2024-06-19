@@ -2,7 +2,7 @@
   import markdownit from 'markdown-it'
   import { useChat } from '@ai-sdk/vue'
 
-  import { aiRegex, content } from '@/logics'
+  import { aiRegex, content, modelSetting } from '@/logics'
 
   const textareaRef = ref<HTMLTextAreaElement | null>()
   const { targetHeight, autoScrollHeight } = useAutoHeight(textareaRef, { maxHeight: 148 })
@@ -44,7 +44,14 @@
   ]
 
   async function sendMessage(e: any) {
-    handleSubmit(e, { options: { body: { text: content.value } } })
+    handleSubmit(e, {
+      options: {
+        headers: {
+          'X-RexAI-keys': JSON.stringify(modelSetting.value)
+        },
+        body: { text: content.value }
+      }
+    })
   }
 </script>
 
@@ -53,7 +60,7 @@
     <div class=" bg-gray-100 px-2 py-1" flex="~ justify-between items-center">
       <div class="text-gray-500 gap-1.5 " flex="~ items-center">
         <div i-carbon:ai text-xl />
-        <input class="w-100px">
+        <!-- <Dropdowns /> -->
       </div>
       <div flex="~ items-center">
         <button i-carbon:settings title="Setting" class="text-xl text-gray-500 hover:text-gray-600" />

@@ -1,4 +1,5 @@
 import { useLocalStorage } from '@vueuse/core'
+import type { ModelProviderOptions } from '@/providers'
 
 import DEFAULT_CONTENT from '../README.md?raw'
 
@@ -30,3 +31,5 @@ export function setRegex(
     regex.value = val
   }
 }
+
+export const modelSetting = useLocalStorage<ModelProviderOptions>('modelSetting', {} as ModelProviderOptions)
