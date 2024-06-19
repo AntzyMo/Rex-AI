@@ -63,7 +63,7 @@
     <div class=" bg-gray-100 px-2 py-1" flex="~ justify-between items-center">
       <div class="text-gray-500 gap-1.5 " flex="~ items-center">
         <div i-carbon:ai text-xl />
-        <input class="w-100px">
+        <!-- <Dropdowns /> -->
       </div>
       <div flex="~ items-center">
         <button i-carbon:settings title="Setting" class="text-xl text-gray-500 hover:text-gray-600" />
