@@ -27,8 +27,6 @@
         aiRegex.value = [...new Set([...aiRegex.value, matchAi?.[1]])]
       }
     }
-  }, {
-    immediate: true
   })
 
   const mdcontent = [
