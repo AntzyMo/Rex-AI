@@ -2,7 +2,7 @@
   import markdownit from 'markdown-it'
   import { useChat } from '@ai-sdk/vue'
 
-  import { aiRegex, content, setRegex } from '@/logics'
+  import { aiRegex, content } from '@/logics'
 
   const textareaRef = ref<HTMLTextAreaElement | null>()
   const { targetHeight, autoScrollHeight } = useAutoHeight(textareaRef, { maxHeight: 148 })
@@ -25,7 +25,6 @@
 
       if (matchAi?.[1]) {
         aiRegex.value = [...new Set([...aiRegex.value, matchAi?.[1]])]
-        setRegex(matchAi?.[1])
       }
     }
   }, {
@@ -118,11 +117,11 @@
 <style lang="postcss">
 .md-content{
   p{
-    @apply w-full m-0
+    @apply w-full mt-0
   }
 
   ul{
-    @apply m-0 leading-3.5 -mt-4
+    @apply leading-3.5 -mt-2
   }
 }
 </style>

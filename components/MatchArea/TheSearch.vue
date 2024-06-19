@@ -1,27 +1,25 @@
 <script setup lang="ts">
-  import { aiRegex, aiRegexIdx, regex, setRegex } from '@/logics'
+  import { aiRegex, regex, setRegex } from '@/logics'
 
   const loading = ref(false)
-
-  onMounted(() => {
-    setRegex(regex)
+  let isFlag = 0
+  watch(aiRegex, (val = []) => {
+    if (val.length && isFlag < 1) {
+      regex.value = ''
+      loading.value = true
+      isFlag++
+      setRegex(val.at(-1)!, true, {
+        onFinished() {
+          loading.value = false
+          isFlag = 0
+        }
+      })
+    }
   })
 </script>
 
 <template>
   <div class="mx-5 grid gap-1">
-    <ClientOnly>
-      <div flex="~ items-center gap-1.2">
-        <IconButton
-          v-for="(item, index) in aiRegex"
-          :key="item"
-          class="p-1!"
-          :icon="`i-carbon:number-${index + 1}`"
-          :checked="aiRegexIdx === index"
-          @click="setRegex(item)"
-        />
-      </div>
-    </ClientOnly>
     <Editor
       v-model.trim="regex"
       :loading="loading"
