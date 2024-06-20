@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import { Pane, Splitpanes } from 'splitpanes'
+
+  import { isModelSettingOpen } from '@/logics'
 </script>
 
 <template>
@@ -14,7 +16,9 @@
           <AIArea />
         </Pane>
       </Splitpanes>
-      <Setting />
+      <Transition>
+        <Setting v-if="isModelSettingOpen" />
+      </Transition>
     </div>
   </div>
 </template>

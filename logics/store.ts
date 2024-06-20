@@ -33,3 +33,4 @@ export function setRegex(
 }
 
 export const modelSetting = useLocalStorage<ModelProviderOptions>('modelSetting', {} as ModelProviderOptions)
+export const isModelSettingOpen = ref(false)

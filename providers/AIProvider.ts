@@ -13,7 +13,6 @@ export function AIProvider(
   switch (provider) {
     case ModelProvider.Azure:{
       const { azureApiKey, azureResourceName } = runtimeConfig
-      console.log('options', options)
       const azure = createAzure({
         apiKey: options?.azureApiKey || azureApiKey,
         resourceName: options?.azureResourceName || azureResourceName

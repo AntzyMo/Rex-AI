@@ -2,7 +2,7 @@
   import markdownit from 'markdown-it'
   import { useChat } from '@ai-sdk/vue'
 
-  import { aiRegex, content, modelSetting } from '@/logics'
+  import { aiRegex, content, isModelSettingOpen, modelSetting } from '@/logics'
 
   const textareaRef = ref<HTMLTextAreaElement | null>()
   const { targetHeight, autoScrollHeight } = useAutoHeight(textareaRef, { maxHeight: 148 })
@@ -29,20 +29,6 @@
     }
   })
 
-  const mdcontent = [
-    {
-      content: '怎么匹配wasd',
-      role: 'user',
-      id: 'mlH3BYU'
-    },
-    {
-      id: '6IymcbY',
-      role: 'assistant',
-      content: '[[\\bwasd\\b]]\n- `\\b` : 匹配单词的边界\n- `wasd` : 匹配wasd字符串',
-      createdAt: '2024-06-12T07:50:26.853Z'
-    }
-  ]
-
   async function sendMessage(e: any) {
     handleSubmit(e, {
       options: {
@@ -57,13 +43,18 @@
 
 <template>
   <div class="mx-5 h-full  min-w-433px" flex="~ 1 col" border="~ rounded gray-200">
-    <div class=" bg-gray-100 px-2 py-1" flex="~ justify-between items-center">
+    <div class=" bg-gray-100 px-2 py-1.5" flex="~ justify-between items-center">
       <div class="text-gray-500 gap-1.5 " flex="~ items-center">
         <div i-carbon:ai text-xl />
         <!-- <Dropdowns /> -->
       </div>
       <div flex="~ items-center">
-        <button i-carbon:settings title="Setting" class="text-xl text-gray-500 hover:text-gray-600" />
+        <button
+          i-carbon:settings
+          title="Setting"
+          class="text-xl text-gray-500 hover:text-gray-600"
+          @click="isModelSettingOpen = !isModelSettingOpen"
+        />
       </div>
     </div>
     <div
@@ -116,7 +107,6 @@
       </div>
     </div>
   </div>
-  <div>123</div>
 </template>
 
 <style lang="postcss">
