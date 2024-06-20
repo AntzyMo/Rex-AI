@@ -32,11 +32,11 @@
   const modelSelectValue = ref('')
   const modelList = [{
     label: 'gpt-3.5-turbo',
-    value: 'Azure gpt-3.5-turbo',
+    value: 'Azure gpt-35-turbo',
     icon: 'i-simple-icons:microsoftazure'
   }, {
     label: 'gpt-3.5-turbo',
-    value: 'OpenAI gpt-3.5-turbo',
+    value: 'OpenAI gpt-35-turbo',
     icon: 'i-simple-icons:openai'
   }]
 
