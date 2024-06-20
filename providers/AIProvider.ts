@@ -21,7 +21,9 @@ export function AIProvider(
     }
 
     case ModelProvider.OpenAI:{
+      const { openaiApiKey } = runtimeConfig
       const openai = createOpenAI({
+        apiKey: options?.openaiApiKey || openaiApiKey,
         compatibility: 'strict'
       })
       return openai(deploymentModel)

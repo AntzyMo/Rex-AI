@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     azureApiKey: process.env.AZURE_API_KEY,
-    azureResourceName: process.env.AZURE_RESOURCE_NAME
+    azureResourceName: process.env.AZURE_RESOURCE_NAME,
+    openaiApiKey: process.env.OPENAI_API_KEY
   }
 })

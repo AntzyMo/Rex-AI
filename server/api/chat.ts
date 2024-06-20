@@ -6,7 +6,7 @@ import { AIProvider, ModelProvider } from '@/providers'
 export default defineEventHandler(async event => {
   const rexAIKeys = getHeader(event, 'X-RexAI-keys')
 
-  const { messages, text } = await readBody<{ messages: CoreMessage[], text: string }>(event)
+  const { messages, text, provider, model } = await readBody<{ messages: CoreMessage[], text: string, provider: keyof typeof ModelProvider, model: string }>(event)
   const agentMessages = [
     {
       content: '你好',
@@ -31,8 +31,9 @@ export default defineEventHandler(async event => {
     ...messages
   ] as CoreMessage[]
 
+  console.log('ModelProvider[provider]', ModelProvider[provider])
   const result = await streamText({
-    model: AIProvider(ModelProvider.Azure, 'gpt-35-turbo', rexAIKeys && JSON.parse(rexAIKeys)),
+    model: AIProvider(ModelProvider[provider], model, rexAIKeys && JSON.parse(rexAIKeys)),
     maxTokens: 1024,
     temperature: 0.6,
     topP: 1,

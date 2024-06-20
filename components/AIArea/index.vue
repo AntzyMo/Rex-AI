@@ -29,13 +29,25 @@
     }
   })
 
-  async function sendMessage(e: any) {
+  const modelSelectValue = ref('')
+  const modelList = [{
+    label: 'gpt-3.5-turbo',
+    value: 'Azure gpt-3.5-turbo',
+    icon: 'i-simple-icons:microsoftazure'
+  }, {
+    label: 'gpt-3.5-turbo',
+    value: 'OpenAI gpt-3.5-turbo',
+    icon: 'i-simple-icons:openai'
+  }]
+
+  function sendMessage(e: Event) {
+    const [provider, model] = modelSelectValue.value.split(' ')
     handleSubmit(e, {
       options: {
         headers: {
           'X-RexAI-keys': JSON.stringify(modelSetting.value)
         },
-        body: { text: content.value }
+        body: { text: content.value, provider, model }
       }
     })
   }
@@ -43,10 +55,10 @@
 
 <template>
   <div class="mx-5 h-full  min-w-433px" flex="~ 1 col" border="~ rounded gray-200">
-    <div class=" bg-gray-100 px-2 py-1.5" flex="~ justify-between items-center">
+    <div class=" bg-gray-100 px-2 py-1" flex="~ justify-between items-center">
       <div class="text-gray-500 gap-1.5 " flex="~ items-center">
         <div i-carbon:ai text-xl />
-        <!-- <Dropdowns /> -->
+        <Select v-model="modelSelectValue" :list="modelList" />
       </div>
       <div flex="~ items-center">
         <button
