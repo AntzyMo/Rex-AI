@@ -1,13 +1,20 @@
 <script setup lang="ts">
-  import { modelSetting } from '@/logics'
+  import { isModelSettingOpen, modelSetting } from '@/logics'
 </script>
 
 <template>
   <div class="w-xs font-mono pr-4">
     <div>
-      <h1 class="mb-1">
-        Model
-      </h1>
+      <div class="mb-1" flex="~ items-center justify-between">
+        <h1>Model</h1>
+        <button
+          i-carbon:side-panel-close
+          class="text-xl mb-.5 text-gray-600 hover:text-gray-800 transition"
+          title="Close Setting"
+          @click="isModelSettingOpen = false"
+        />
+      </div>
+
       <div class="grid gap-6">
         <div border-t="~ gray-200" class="pt-2">
           <div class="text-sm mb-4" flex="~ items-center gap-2">

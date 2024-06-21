@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import markdownit from 'markdown-it'
   import { useChat } from '@ai-sdk/vue'
+  import type { SelectItem } from '../UI/types'
 
   import { aiRegex, content, isModelSettingOpen, modelSetting } from '@/logics'
 
@@ -38,7 +39,7 @@
     label: 'gpt-3.5-turbo',
     value: 'OpenAI gpt-35-turbo',
     icon: 'i-simple-icons:openai'
-  }]
+  }] as SelectItem[]
 
   function sendMessage(e: Event) {
     const [provider, model] = modelSelectValue.value.split(' ')
@@ -63,9 +64,9 @@
       <div flex="~ items-center">
         <button
           i-carbon:settings
-          title="Setting"
+          title="Open Setting"
           class="text-xl text-gray-500 hover:text-gray-600"
-          @click="isModelSettingOpen = !isModelSettingOpen"
+          @click="isModelSettingOpen = true"
         />
       </div>
     </div>
