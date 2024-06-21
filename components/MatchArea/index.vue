@@ -9,8 +9,6 @@
 <template>
   <TheSearch ref="theSearchRef" />
   <div :style="{ height: matchsAreaHeight }">
-    <ClientOnly>
-      <TheMatchs />
-    </ClientOnly>
+    <TheMatchs />
   </div>
 </template>

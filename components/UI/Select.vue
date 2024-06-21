@@ -29,7 +29,7 @@
 </script>
 
 <template>
-  <div v-click-outside="() => isSelectOptionsOpen = false" class="relative">
+  <div v-click-outside="() => isSelectOptionsOpen = false" class="relative font-mono">
     <div>
       <button
         class="w-full bg-white px-2 py-1.5 text-sm  text-gray-900   hover:bg-gray-50"

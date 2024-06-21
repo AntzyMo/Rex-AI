@@ -16,9 +16,7 @@
           <AIArea />
         </Pane>
       </Splitpanes>
-      <Transition>
-        <Setting v-if="isModelSettingOpen" />
-      </Transition>
+      <Setting v-if="isModelSettingOpen" />
     </div>
   </div>
 </template>

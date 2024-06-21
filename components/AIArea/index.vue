@@ -55,7 +55,7 @@
 </script>
 
 <template>
-  <div class="mx-5 h-full  min-w-433px" flex="~ 1 col" border="~ rounded gray-200">
+  <div class="mx-5 h-full" flex="~ 1 col" border="~ rounded gray-200">
     <div class=" bg-gray-100 px-2 py-1" flex="~ justify-between items-center">
       <div class="text-gray-500 gap-1.5 " flex="~ items-center">
         <div i-carbon:ai text-xl />
