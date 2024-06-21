@@ -23,19 +23,27 @@
     emit('change', val)
   }
 
+  const selectContainerRef = ref<HTMLDivElement | null>()
   onMounted(() => {
+    console.log('selectContainerRef', selectContainerRef.value?.contains)
     modelValue.value = props.list[0].value
+
+    document.addEventListener('click', e => {
+      if (!selectContainerRef.value?.contains(e.target)) {
+        isSelectOptionsOpen.value = false
+      }
+    })
   })
 </script>
 
 <template>
-  <div class="relative">
+  <div ref="selectContainerRef" class="relative">
     <div>
       <button
         class="w-full bg-white px-2 py-1.5 text-sm  text-gray-900   hover:bg-gray-50"
         flex="~ items-center gap-1.5 justify-between"
         border="~ gray-200 rounded-md"
-        @click="isSelectOptionsOpen = true"
+        @click="isSelectOptionsOpen = !isSelectOptionsOpen"
       >
         <div class="text-xs" flex="~ items-center gap-2">
           <span class="text-xs" :class="`${selected.icon}`" />
@@ -55,7 +63,7 @@
           class="mx-1 px-1.5 py-1  rounded hover:bg-gray-200/70 active:bg-gray-100 text-gray-700 overflow-hidden text-xs"
           flex="~ gap-2  items-center"
           :class="{ 'bg-gray-100': selectedIdx === index }"
-          @click="selectClick(item)"
+          @click.stop="selectClick(item)"
         >
           <span class="text-xs" :class="`${item.icon}`" />
           <span class="text-xs">{{ item.label }}</span>
