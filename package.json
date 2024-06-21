@@ -28,9 +28,11 @@
   "devDependencies": {
     "@antzy/eslint-config": "^3.3.2",
     "@iconify-json/carbon": "^1.1.34",
+    "@iconify-json/mdi": "^1.1.67",
     "@iconify-json/ri": "^1.1.20",
     "@iconify-json/simple-icons": "^1.1.105",
     "@iconify-json/svg-spinners": "^1.1.2",
+    "@iconify-json/tabler": "^1.1.114",
     "@types/markdown-it": "^14.1.1",
     "@types/splitpanes": "^2.2.6",
     "@unocss/nuxt": "^0.60.4",
