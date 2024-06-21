@@ -23,21 +23,13 @@
     emit('change', val)
   }
 
-  const selectContainerRef = ref<HTMLDivElement | null>()
   onMounted(() => {
-    console.log('selectContainerRef', selectContainerRef.value?.contains)
     modelValue.value = props.list[0].value
-
-    document.addEventListener('click', e => {
-      if (!selectContainerRef.value?.contains(e.target)) {
-        isSelectOptionsOpen.value = false
-      }
-    })
   })
 </script>
 
 <template>
-  <div ref="selectContainerRef" class="relative">
+  <div v-click-outside="() => isSelectOptionsOpen = false" class="relative">
     <div>
       <button
         class="w-full bg-white px-2 py-1.5 text-sm  text-gray-900   hover:bg-gray-50"
