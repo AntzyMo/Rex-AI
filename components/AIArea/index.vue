@@ -79,7 +79,7 @@
         <div v-if="m.role !== 'user'" flex="~ gap-3 ">
           <div>
             <div class="p-1" border="~  rounded-full gray-200">
-              <div i-ri:openai-fill class="text-xl text-gray-800" />
+              <div i-simple-icons:openai class="text-xl text-gray-800" />
             </div>
           </div>
           <div class="mt-1.5 prose md-content" v-html="mdit(m.content)" />
