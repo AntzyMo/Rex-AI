@@ -41,9 +41,9 @@
     icon: 'i-simple-icons:openai'
   }] as SelectItem[]
 
-  function sendMessage(e: Event) {
+  function sendMessage() {
     const [provider, model] = modelSelectValue.value.split(' ')
-    handleSubmit(e, {
+    handleSubmit(undefined, {
       options: {
         headers: {
           'X-RexAI-keys': JSON.stringify(modelSetting.value)
@@ -103,7 +103,7 @@
           class="w-full flex-1 px-2 py-1 self-center  overflow-y-auto outline-none text-sm  resize-none"
           placeholder="your meaasge..."
           @input="autoScrollHeight"
-          @keydown.enter="e => sendMessage(e)"
+          @keydown.enter.prevent="sendMessage"
         />
         <div flex="~ items-center justify-end">
           <IconButton
@@ -114,7 +114,7 @@
             :class="{
               'bg-black/90! text-white!': input.length,
             }"
-            @click="e => sendMessage(e)"
+            @click="sendMessage"
           />
         </div>
       </div>
